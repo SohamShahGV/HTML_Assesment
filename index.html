@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assesment</title>
+  </head>
+  <body>
+    <p id="message"><b>Registration Form</b></p>
+    <form action="/login.html"> 
+      <label for="fname">First Name: </label>
+      <input type="text" value="" id="fname" minlength="3" required />
+      <br />
+      <br />
+      <label for="lname">Last Name: </label>
+      <input type="text" value="" id="lname" minlength="3" required />
+      <br />
+      <br />
+      <label for="phone">Phone Number: </label>
+      <input
+        name="Phone Number: "
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type="number"
+        id="pnum"
+        maxlength="10"
+      />
+      <br />
+      <br />
+      <label for="email">Email Address: </label>
+      <input type="email" value="" id="email" required />
+      <br />
+      <br />
+      <p><b>Gender</b></p>
+      <input type="radio" id="male" name="gender" value="male" />
+      <label for="male">Male</label><br />
+      <input type="radio" id="css" name="gender" value="female" />
+      <label for="female">Female</label><br /><br />
+      <label for="password">Enter Password: </label>
+      <input
+        type="password"
+        value=""
+        id="pass"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        required
+      />
+      <br />
+      <br />
+      <label for="confpass">Confirm Password: </label>
+      <input
+        type="password"
+        value=""
+        id="confpass"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        required
+      />
+      <br />
+      <br />
+      <button type="submit" onclick="submission()" id="sub">Submit</button>
+      <br />
+      <br />
+      <!-- <button type="submit" onclick="save()" id="login">Proceed to login</button> -->
+      <br />
+    </form>
+    <script>
+      submission = () => {
+        let fname = document.getElementById("fname").value;
+        let ver_f = Array.from(fname);
+        if (ver_f[0] === " ") {
+          alert("Spaces not allowed in Name");
+          console.log(fname);
+          console.log(ver_f);
+        }
+        fname.trim();
+        let lname = document.getElementById("lname").value;
+        let ver_l = Array.from(fname);
+        if (ver_l[0] === " ") {
+          alert("Spaces not allowed in Name");
+          console.log(lname);
+          console.log(ver_l);
+        }
+        lname.trim();
+        let password = document.getElementById("pass").value;
+        let confirmed_pass = document.getElementById("confpass").value;
+        console.log(password);
+        console.log(confirmed_pass);
+        if (password === confirmed_pass) {
+          return true;
+        } else {
+          alert("Enter Same Password");
+        }
+        let verify = document
+          .querySelector("#sub")
+          .addEventListener('click', function (e) {
+            const email_save = document.getElementById("email").value;
+            let stremail = String(email_save);
+            sessionStorage.setItem('email', stremail);
+            const pass_save = document.getElementById("pass").value;
+            strpass = String(pass_save);
+            sessionStorage.setItem('password', strpass);
+            e.preventDefault();
+          });
+      };
+    </script>
+  </body>
+</html>
